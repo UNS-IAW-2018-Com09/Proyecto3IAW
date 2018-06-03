@@ -1,0 +1,86 @@
+<form method="POST" action="/guardarLocal">
+  {{ csrf_field() }}
+  <div class="formulario">
+    <div class="form-group" style="width:60%;margin-left:auto;margin-right:auto">
+      <label for="campoNombre">Nombre</label>
+      <input name="campoNombre" class="form-control" type="text" required>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="campoTipo">Tipo</label>
+          <select name="campoTipo" class="form-control" required>
+            <option id="optionCerveceria">Cerveceria</option>
+            <option id="optionBoliche">Boliche</option>
+            <option id="optionCarrito">Carrito</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="campoLatitud">Latitud</label>
+          <input name="campoLatitud" class="form-control" type="number" disabled required>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="campoLongitud">Longitud</label>
+          <input name="campoLongitud" class="form-control" type="number" disabled required>
+        </div>
+        <div class="form-group">
+          <label for="campoDireccion">Direccion</label>
+          <input name="campoDireccion" class="form-control" type="text" required>
+        </div>
+      </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="campoTelefono">Telefono</label>
+            <input name="campoTelefono" class="form-control" type="number" required>
+          </div>
+          <div class="form-group">
+            <label for="campoFacebook">Facebook</label>
+            <input name="campoFacebook" class="form-control" type="text" required>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="horarios">
+    <div id="horaDomingo" class="horarioElemento p-3 mb-5">
+      <label>Domingo</label>
+      {%include "shared/checkBoxCerrado.twig" with {'dia':'Domingo'}%}
+      {%include "shared/horario.twig" with {'dia':'Domingo'}%}
+    </div>
+    <div id="horaLunes" class="horarioElemento p-3 mb-5">
+      <label>Lunes</label>
+      {%include "shared/checkBoxCerrado.twig" with {'dia':'Lunes'}%}
+      {%include "shared/horario.twig" with {'dia':'Lunes'}%}
+    </div>
+    <div id="horaMartes" class="horarioElemento p-3 mb-5">
+      <label>Martes</label>
+      {%include "shared/checkBoxCerrado.twig" with {'dia':'Martes'}%}
+      {%include "shared/horario.twig" with {'dia':'Martes'}%}
+    </div>
+    <div id="horaMiercoles" class="horarioElemento p-3 mb-5">
+      <label>Miercoles</label>
+      {%include "shared/checkBoxCerrado.twig" with {'dia':'Miercoles'}%}
+      {%include "shared/horario.twig" with {'dia':'Miercoles'}%}
+    </div>
+    <div id="horaJueves" class="horarioElemento p-3 mb-5">
+      <label>Jueves</label>
+      {%include "shared/checkBoxCerrado.twig" with {'dia':'Jueves'}%}
+      {%include "shared/horario.twig" with {'dia':'Jueves'}%}
+    </div>
+    <div id="horaViernes" class="horarioElemento p-3 mb-5">
+      <h3>Viernes</h3>
+      {%include "shared/checkBoxCerrado.twig" with {'dia':'Viernes'}%}
+      {%include "shared/horario.twig" with {'dia':'Viernes'}%}
+    </div>
+    <div id="horaSabado" class="horarioElemento p-3 mb-5">
+      <label>Sabado</label>
+      {%include "shared/checkBoxCerrado.twig" with {'dia':'Sabado'}%}
+      {%include "shared/horario.twig" with {'dia':'Sabado'}%}
+    </div>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Enviar">
+</form>

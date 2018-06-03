@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header" id="heading{{dia}}">
+    <h5 class="mb-0">
+      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{dia}}" aria-expanded="true" aria-controls="collapse{{dia}}">
+        {{dia}}
+      </button>
+    </h5>
+  </div>
+
+  <div id="collapse{{dia}}" class="collapse show" aria-labelledby="heading{{dia}}" data-parent="#accordion">
+    <div class="card-body">
+      {%include "shared/checkBoxCerrado.twig" with {'dia':'{{dia}}'}%}
+      {%include "shared/horario.twig" with {'dia':'{{dia}}'}%}
+    </div>
+  </div>
+</div>

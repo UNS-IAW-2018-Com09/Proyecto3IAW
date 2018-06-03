@@ -1,0 +1,21 @@
+
+body{
+  background-color:#F6E3CE ;
+}
+
+.formulario{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.horarios{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.horarioElemento{
+  box-shadow:10px 10px 5px grey;
+  background-color:#EDBB99;
+}
