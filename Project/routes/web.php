@@ -10,12 +10,16 @@
 |
 */
 
-Route::get('/','HomePageController@render');
+Route::get('/','HomeController@index');
 
 Route::post('/guardarLocal','DataBaseController@save');
 
+Route::post('/borrarLocal','DataBaseController@delete');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/getLocales','DataBaseController@get');
+
+Route::get('/logout','Auth\LoginController@logout');
+
+Route::get('/readme','HomePageController@readme');

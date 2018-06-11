@@ -19,3 +19,11 @@ body{
   box-shadow:10px 10px 5px grey;
   background-color:#EDBB99;
 }
+
+.encabezado-horario{
+  background-color: #EDBB99;
+}
+
+.cuerpo-horario{
+  background-color:#F6E3CE ;
+}

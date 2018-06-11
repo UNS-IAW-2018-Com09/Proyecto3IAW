@@ -6,6 +6,8 @@
       <input name="campoNombre" class="form-control" type="text" required>
     </div>
 
+    <input name="campoID" class="form-control" type="text" style="display:none">
+
     <div class="row">
       <div class="col">
         <div class="form-group">
@@ -18,13 +20,13 @@
         </div>
         <div class="form-group">
           <label for="campoLatitud">Latitud</label>
-          <input name="campoLatitud" class="form-control" type="number" disabled required>
+          <input name="campoLatitud" class="form-control" type="number" step="any" required>
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label for="campoLongitud">Longitud</label>
-          <input name="campoLongitud" class="form-control" type="number" disabled required>
+          <input name="campoLongitud" class="form-control" type="number" step="any" required>
         </div>
         <div class="form-group">
           <label for="campoDireccion">Direccion</label>
@@ -44,43 +46,43 @@
     </div>
   </div>
 
-  <div class="horarios">
-    <div id="horaDomingo" class="horarioElemento p-3 mb-5">
-      <label>Domingo</label>
-      {%include "shared/checkBoxCerrado.twig" with {'dia':'Domingo'}%}
-      {%include "shared/horario.twig" with {'dia':'Domingo'}%}
-    </div>
-    <div id="horaLunes" class="horarioElemento p-3 mb-5">
-      <label>Lunes</label>
-      {%include "shared/checkBoxCerrado.twig" with {'dia':'Lunes'}%}
-      {%include "shared/horario.twig" with {'dia':'Lunes'}%}
-    </div>
-    <div id="horaMartes" class="horarioElemento p-3 mb-5">
-      <label>Martes</label>
-      {%include "shared/checkBoxCerrado.twig" with {'dia':'Martes'}%}
-      {%include "shared/horario.twig" with {'dia':'Martes'}%}
-    </div>
-    <div id="horaMiercoles" class="horarioElemento p-3 mb-5">
-      <label>Miercoles</label>
-      {%include "shared/checkBoxCerrado.twig" with {'dia':'Miercoles'}%}
-      {%include "shared/horario.twig" with {'dia':'Miercoles'}%}
-    </div>
-    <div id="horaJueves" class="horarioElemento p-3 mb-5">
-      <label>Jueves</label>
-      {%include "shared/checkBoxCerrado.twig" with {'dia':'Jueves'}%}
-      {%include "shared/horario.twig" with {'dia':'Jueves'}%}
-    </div>
-    <div id="horaViernes" class="horarioElemento p-3 mb-5">
-      <h3>Viernes</h3>
-      {%include "shared/checkBoxCerrado.twig" with {'dia':'Viernes'}%}
-      {%include "shared/horario.twig" with {'dia':'Viernes'}%}
-    </div>
-    <div id="horaSabado" class="horarioElemento p-3 mb-5">
-      <label>Sabado</label>
-      {%include "shared/checkBoxCerrado.twig" with {'dia':'Sabado'}%}
-      {%include "shared/horario.twig" with {'dia':'Sabado'}%}
-    </div>
+
+  <div class="accordion" id="accordion">
+    {%include "shared/accordionElement.twig" with {'dia':'Domingo'}%}
+    {%include "shared/accordionElement.twig" with {'dia':'Lunes'}%}
+    {%include "shared/accordionElement.twig" with {'dia':'Martes'}%}
+    {%include "shared/accordionElement.twig" with {'dia':'Miercoles'}%}
+    {%include "shared/accordionElement.twig" with {'dia':'Jueves'}%}
+    {%include "shared/accordionElement.twig" with {'dia':'Viernes'}%}
+    {%include "shared/accordionElement.twig" with {'dia':'Sabado'}%}
   </div>
 
   <input type="submit" class="btn btn-primary" value="Enviar">
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+    Borrar
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Seguro quiere borrar el local de la base de datos?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" value="Borrar" formaction="/borrarLocal">
+        </div>
+      </div>
+    </div>
+  </div>
+
 </form>

@@ -4,6 +4,7 @@ var newmarker;
 var bounds;
 var AlmacenamientoLocales=new Map();
 var markers=[];
+var dias=["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
 
 function initMap() {
   var mapProp= {
@@ -24,13 +25,21 @@ function initMap() {
     newmarker = new google.maps.Marker({
       position: event.latLng,
       map: map,
-      title: 'Click to zoom'
+      title: 'Nuevo local'
   });
+    borrarInfo();
     $("input[name=campoLatitud]").val(event.latLng.lat);
     $("input[name=campoLongitud]").val(event.latLng.lng);
+
   });
 
   cargarLocales();
+}
+
+function borrarInfo(){
+  $(":input[type=text]").val("");
+  $(":input[type=number]").val("");
+  $(":input[type=checkbox]:checked").trigger("click");
 }
 
 function cargarLocales(){
@@ -43,7 +52,7 @@ function cargarLocales(){
         position:{"lat":locales[i]["ubicacion"][0],"lng":locales[i]["ubicacion"][1]},
         title:locales[i]["nombre"],
         icon:'/images/'+locales[i]["tipo"]+'.png',
-        map:map
+        map:map,
       });
       markers.push(marker);
       bounds.extend(new google.maps.LatLng(marker.position.lat(),marker.position.lng()));
@@ -51,6 +60,7 @@ function cargarLocales(){
                 google.maps.event.addListener(marker, "click", function (i) {
                   if (newmarker!=null)
                     newmarker.setMap(null);
+                  borrarInfo();
                   fillInformation(marker.title);
                 });
             })(marker, data);
@@ -69,9 +79,28 @@ function fillInformation(local){
   $("input[name=campoTelefono]").val(objLocal.telefono);
   $("input[name=campoDireccion]").val(objLocal.direccion);
   $("input[name=campoFacebook]").val(objLocal.facebook);
+  $("input[name=campoID]").val(objLocal._id);
+
+  var i=0;
+  dias.forEach(function(element){
+    $("input[name="+element+"]").trigger("click");
+  });
+
+  objLocal.horario.forEach(function(element){
+    $("input[name="+element.Dia+"]").trigger("click");
+    setearHora(element);
+  });
 
 }
 
+function setearHora(element){
+  var open=element.horarioApertura.split(":");
+  var close=element.horarioCierra.split(":");
+  $("input[name=horaApertura"+element.Dia+"]").val(open[0]);
+  $("input[name=minutosApertura"+element.Dia+"]").val(open[1]);
+  $("input[name=horaCierre"+element.Dia+"]").val(close[0]);
+  $("input[name=minutosCierre"+element.Dia+"]").val(close[1]);
+}
 
 function descheckear(event){
   var dia=event.getAttribute("name");
